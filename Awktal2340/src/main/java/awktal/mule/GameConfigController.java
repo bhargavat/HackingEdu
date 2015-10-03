@@ -5,26 +5,20 @@ import awktal.mule.GameState;
 import javafx.fxml.FXML;
 import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.control.Toggle;
 import javafx.scene.Scene;
 
 /**
  * GameConfigController controls the game configuration screen.
- * This will be automatically created when the fxml is loaded.
 */
-public class GameConfigController extends SceneController{
+public class GameConfigController extends SceneController {
 
     @FXML
     private Slider numPlayers;
 
     @FXML
     private ToggleGroup mapType;
-
-    @FXML
-    private Toggle random;
-
-    @FXML
-    private Toggle traditional;
 
     /**
      * Constructor for a GameConfigController.
@@ -45,12 +39,8 @@ public class GameConfigController extends SceneController{
     */
     public void selectionFinished() {
         gameState.setMaxPlayers((int) numPlayers.getValue());
-        Map map = null;
-        if (mapType.getSelectedToggle() == random) {
-            map = MapGenerator.generateMap(MapType.RANDOM);
-        } else if (mapType.getSelectedToggle() == traditional) {
-            map = MapGenerator.generateMap(MapType.TRADITIONAL);
-        } 
+        String mapTypeStr = ((ToggleButton)mapType.getSelectedToggle()).getId();
+        Map map = MapGenerator.generateMap(MapType.valueOf(mapTypeStr));
         gameState.setMap(map);
         SceneManager.loadScene(GameScene.PLAYER_CONFIG);
     }

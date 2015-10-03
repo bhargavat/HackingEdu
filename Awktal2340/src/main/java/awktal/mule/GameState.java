@@ -15,6 +15,10 @@ public class GameState {
 
     private Map map;
 
+    private int round;
+
+    private boolean propertySelectionEnabled;
+
     /**
      * The constructor for a GameState.
      * This can only be called once as this class should be a singleton.
@@ -24,6 +28,8 @@ public class GameState {
         players = new ArrayList<>();
         maxPlayers = 0;
         currentPlayerIndex = 0;
+        round = 1;
+        propertySelectionEnabled = true;
     }
 
     /**
@@ -33,6 +39,14 @@ public class GameState {
     */
     public ArrayList<Player> getPlayers() {
         return players;
+    }
+
+    public boolean getPropertySelectionEnabled() {
+        return propertySelectionEnabled;
+    }
+
+    public void setPropertySelectionEnabled(Boolean enabled) {
+        propertySelectionEnabled = enabled;
     }
 
     /**
@@ -47,8 +61,12 @@ public class GameState {
     /**
      * Gets the current player.
      * @return the current player (the player whose turn it is)
+     * @throws NoNextPlayerException if the round is over (no next player).
     */
     public Player getCurrentPlayer() {
+        if (currentPlayerIndex >= players.size()) {
+            throw new NoNextPlayerException("Round is over, no next player.");
+        }
         return players.get(currentPlayerIndex);
     }
 
@@ -108,11 +126,47 @@ public class GameState {
         }
     }
 
+    /**
+     * Sets the map for the game state.
+     * @param map the map that the game will use for play.
+    */
     public void setMap(Map map) {
         this.map = map;
     }
 
+    /**
+     * Gets the map that the GameState is currently using for the game.
+     * @return the map that the GameState is currently using.
+    */
     public Map getMap() {
         return this.map;
+    }
+
+    /**
+     * Progresses the current player to the next player.
+    */
+    public void endPlayerTurn() {
+        currentPlayerIndex++;
+    }
+
+    /**
+     * Allows you to check if a round is over.
+     * Make sure you call this before you call getCurrentPlayer.
+     * @return if all players have taken their turns.
+    */
+    public boolean isRoundOver() {
+        return currentPlayerIndex < players.size();
+    }
+
+    /**
+     * Starts a new round for the game.
+    */
+    public void newRound() {
+        currentPlayerIndex = 0;
+        round++;
+    }
+
+    public int getRound(){
+        return round;
     }
 }
