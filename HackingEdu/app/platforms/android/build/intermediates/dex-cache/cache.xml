@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\Me\Dropbox\Code4Good\team-11\app\platforms\android\build\intermediates\exploded-aar\android\CordovaLib\unspecified\debug\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="441e9f7c7f11a5f00e32c0da48422037a9de38c3">
+        <dex dex="C:\Users\Me\Dropbox\Code4Good\team-11\app\platforms\android\build\intermediates\pre-dexed\debug\classes-132881daccb7f7fc5ed9b2ef6ff2757b45abbaeb.jar" />
+    </item>
+
+</items>

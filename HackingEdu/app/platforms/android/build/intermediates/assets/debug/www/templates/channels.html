@@ -1,0 +1,50 @@
+<ion-view view-title="Channels">
+  <ion-content>
+
+    <button class="button button-full button-light" ng-click="joinChannel()">
+      Join Channel
+    </button>
+    <button class="button button-full button-light" ng-click="createChannel()">
+      Create Channel
+    </button>
+
+    <div class="item item-divider">Current</div>
+
+    
+
+    <div class="list">
+
+      <a class="item item-thumbnail-left" href="#" ng-repeat="channel in curr_channels">
+        <img src={{channel.img}}>
+        <h2>{{channel.title}} </h2>
+      </a>
+
+    </div>
+
+  
+    <div class="item item-divider">Closed</div>
+
+    <div class="list">
+
+      <a class="item item-thumbnail-left" href="#" ng-repeat="channel in past_channels">
+        <img src={{channel.img}}>
+        <h2>{{channel.title}} </h2>
+      </a>
+
+    </div>
+
+  </ion-content>
+</ion-view>
+
+<!-- <ion-view view-title="Dashboard">
+  <ion-content class="padding">
+    <div class="list card" ng-repeat="blog_entry in blog_entries">
+      <div class="item item-divider">{{blog_entry.title}}</div>
+      <div class="item item-body">
+        <div>
+          {{blog_entry.content}}
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view> -->
