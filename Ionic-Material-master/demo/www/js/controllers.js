@@ -17,6 +17,10 @@ angular.module('starter.controllers', [])
         });
     }
 
+    FB.Event.subscribe('auth.statusChange', function(response) {
+        $rootScope.$broadcast("fb_statusChange", {'status': response.status});
+    });
+
     ////////////////////////////////////////
     // Layout Methods
     ////////////////////////////////////////
@@ -87,12 +91,49 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('LoginCtrl', function($scope, $timeout, $stateParams, ionicMaterialInk) {
+.controller('LoginCtrl', function($scope, $location, $window, $timeout, $stateParams, ionicMaterialInk) {
     $scope.$parent.clearFabs();
     $timeout(function() {
         $scope.$parent.hideHeader();
     }, 0);
     ionicMaterialInk.displayEffect();
+
+    $scope.onLogin = function() {
+    //checkLoginState();
+    //$location.path('app/test.html');
+        //$scope.init(document, 'script', 'facebook-jssdk');
+        $scope.checkLoginState();
+    }
+
+    $scope.statusChangeCallback = function(response) {
+        console.log('statusChangeCallback');
+        console.log(response);
+        if (response.status === 'connected') {
+          testAPI();
+        } else if (response.status === 'not_authorized') {
+          document.getElementById('status').innerHTML = 'Please log ' +
+            'into this app.';
+        } else {
+          document.getElementById('status').innerHTML = 'Please log ' +
+            'into Facebook.';
+        }
+    }
+
+    $scope.checkLoginState = function() {
+        FB.getLoginStatus(function(response) {
+          statusChangeCallback(response);
+        });
+    }
+
+    
+    $scope.testAPI = function() {
+        console.log('Welcome!  Fetching your information.... ');
+        FB.api('/me', function(response) {
+            console.log('Successful login for: ' + response.name);
+            document.getElementById('status').innerHTML =
+            'Thanks for logging in, ' + response.name + '!';
+        });
+    };
 })
 
 .controller('FriendsCtrl', function($scope, $stateParams, $timeout, ionicMaterialInk, ionicMaterialMotion) {

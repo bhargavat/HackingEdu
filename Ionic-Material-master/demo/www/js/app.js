@@ -91,6 +91,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ionic-material', 'io
         }
     })
 
+
     .state('app.login', {
         url: '/login',
         views: {

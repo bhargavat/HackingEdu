@@ -5,7 +5,11 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'ionic-material', 'starter.controllers'])
-
+module.config(function($cordovaFacebookProvider) {
+  var appID = 123456789;
+  var version = "v2.0"; // or leave blank and default is v2.0
+  $cordovaFacebookProvider.browserInit(appID, version);
+});
 .run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard

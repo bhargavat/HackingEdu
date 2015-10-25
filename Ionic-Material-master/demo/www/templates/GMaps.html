@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      html, body { height: 100%; margin: 0; padding: 0; }
+      #map { height: 100%; }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 37.4274, lng: -122.171},
+        zoom: 18
+    });
+
+    var infowindow1 = new google.maps.InfoWindow({
+        content: 'You are here'
+    });
+    var marker1 = new google.maps.Marker({
+        position: {lat: 37.446, lng: -122.303},
+        map: map
+    });
+    marker1.addListener('click', function() {
+        infowindow1.open(map, marker1);
+    });
+
+    var infowindow2 = new google.maps.InfoWindow({
+        content: 'Studying Organic Chemistry II'
+    });
+    var marker2 = new google.maps.Marker({
+        position: {lat: 37.545, lng: -122.3026},
+        map: map
+    }); 
+    marker2.addListener('click', function() {
+        infowindow2.open(map, marker2);
+    });  
+    var infowindow3 = new google.maps.InfoWindow({
+        content: 'Studying History of Chairs'
+    }); 
+    var marker3 = new google.maps.Marker({
+        position: {lat: 37.5456, lng: -122.303},
+        map: map
+    }); 
+    marker3.addListener('click', function() {
+        infowindow3.open(map, marker3);
+    }); 
+    var infowindow4 = new google.maps.InfoWindow({
+        content: 'Studying Calculus II'
+    });
+    var marker4 = new google.maps.Marker({
+        position: {lat: 37.546251, lng: -122.302},
+        map: map
+    }); 
+    marker4.addListener('click', function() {
+        infowindow4.open(map, marker4);
+    }); 
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+            initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            map.setCenter(initialLocation);
+        });
+    }
+}
+
+    </script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAS-pJnAr-yBRw5zYOgfbQNGt-j7L953rI&callback=initMap">
+    </script>
+  </body>
+</html>
