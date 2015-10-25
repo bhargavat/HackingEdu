@@ -70,12 +70,14 @@ $scope.login = function() {
 })
 
 .controller('TypeCtrl', function($scope, $location, UserSession, $ionicPopup, $rootScope) {
-$scope.data = {};
-
 $scope.teacher = function() {
   //login();
   $location.path('app/login');
-}
+};
+$scope.student = function() {
+  //login();
+  $location.path('app/login');
+};
 })
 
 .controller('ExploreCtrl', function($scope) {

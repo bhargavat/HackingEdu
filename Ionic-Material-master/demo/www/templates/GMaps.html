@@ -12,7 +12,7 @@
 
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 37.4274, lng: -122.171},
+        center: {lat: 37.546251, lng: -122.302},
         zoom: 18
     });
 
@@ -20,7 +20,7 @@ function initMap() {
         content: 'You are here'
     });
     var marker1 = new google.maps.Marker({
-        position: {lat: 37.446, lng: -122.303},
+        position: {lat: 37.54625, lng: -122.3021},
         map: map
     });
     marker1.addListener('click', function() {
@@ -58,12 +58,12 @@ function initMap() {
         infowindow4.open(map, marker4);
     }); 
 
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (position) {
-            initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-            map.setCenter(initialLocation);
-        });
-    }
+    // if (navigator.geolocation) {
+    //     navigator.geolocation.getCurrentPosition(function (position) {
+    //         initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    //         map.setCenter(initialLocation);
+    //     });
+    // }
 }
 
     </script>
